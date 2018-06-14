@@ -48,10 +48,10 @@ class Team:
 
         value = 0
         corr_sum = 0
-        for p in players:
+        for p in self.players:
             value += p.value
             for cor in corr_map[p.name]:
-                if cor.player in self.t1:
+                if cor.player in self.players:
                     corr_sum += cor.score
 
         self.value = value
@@ -65,7 +65,8 @@ class Team:
 
         self.score = round(score, 5)  # 5 Decimal places
     def to_string(self):
-        return str(players) + "\nScore " + str(self.score)
+        return self.players[0].name + " " + self.players[1].name + " " + self.players[2].name + " " + \
+               self.players[3].name + " " + self.players[4].name + "\nScore " + str(self.score)
 
 
 
@@ -172,8 +173,10 @@ class Set:
 def get_value(player):
     return player.value
 
+
 def get_score(set):
     return set.score
+
 
 def get_team_score(team):
     return team.score
@@ -237,6 +240,8 @@ corr_map = {
 maxSets = []  # List of Sets, keeps top n
 
 # Create all permutations
+
+'''
 allCombinations = itertools.permutations(og, 10)
 
 counter = 0
@@ -296,13 +301,13 @@ players.sort(key=get_value)
 for p in players:
     print(p.name + "\t" + str(round((p.value - avg)/avg, 3)))
 
+'''
 
 
-
-
+counter = 1
 allCombinations = itertools.permutations(og, 5)
 scoreTotal = 0
-maxSets.clear()
+maxSets = []
 for i in allCombinations:
     counter += 1
     if counter % 1000000 == 0:  # Print every million combinations
@@ -325,15 +330,14 @@ for i in allCombinations:
             # Pop Lowest score and replace with a new score...
             s = maxSets.pop()
             scoreTotal -= get_team_score(s)
-            maxSets.append(set)
+            maxSets.append(team)
             scoreTotal += score
 
+i=1
 maxSets.sort(key=get_team_score, reverse=True)
 for s in maxSets:
     print("Team Number " + str(i) + "\tScore: " + str(get_team_score(s)))
     print(s.to_string())
     i += 1
     print("\n")
-
-
 
