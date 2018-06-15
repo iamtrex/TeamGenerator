@@ -1,4 +1,5 @@
-import Role as R
+from data import Role as R
+
 import itertools
 import math
 import time
