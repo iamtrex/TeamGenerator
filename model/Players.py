@@ -1,6 +1,7 @@
 from data import Role as R
-class Player:
 
+
+class Player:
     def __init__(self, name, rolePref, rating, stats):
         self.name = name
         self.rolePref = rolePref
@@ -22,7 +23,6 @@ class Player:
         other_stats_value = sum(stats) / len(stats) / 5  # Even weights for now..., 1.0 is perfect player lol
 
         self.value = rating_value*0.7+ other_stats_value*0.3  # Get Proper Average
-
 
     def total(self):
         return self.flexibility

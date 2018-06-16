@@ -1,4 +1,4 @@
-from data import Team as T
+from model import Team as T
 from data import Const as C
 import math
 

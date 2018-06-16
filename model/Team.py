@@ -1,5 +1,6 @@
 from data import Role as R
 from data import Const as C
+
 '''
 Defines a team with 5 players
 '''

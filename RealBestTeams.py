@@ -1,6 +1,5 @@
 from data import Const as C
-from data import Team as T
-from data import TeamSet as TS
+from model import TeamSet as TS, Team as T
 
 import itertools
 import time
