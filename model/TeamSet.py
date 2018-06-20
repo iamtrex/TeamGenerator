@@ -51,7 +51,8 @@ class TeamSet:
         self.score = score
 
     def to_string(self):
-        return self.t1.players[0].name + "\t\t" + self.t2.players[0].name + "\n" + \
+        return "Overall Score = " + str(self.score) + "\n" +\
+            self.t1.players[0].name + "\t\t" + self.t2.players[0].name + "\n" + \
             self.t1.players[1].name + "\t\t" + self.t2.players[1].name + "\n" + \
             self.t1.players[2].name + "\t\t" + self.t2.players[2].name + "\n" + \
             self.t1.players[3].name + "\t\t" + self.t2.players[3].name + "\n" + \

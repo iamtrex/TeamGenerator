@@ -1,4 +1,5 @@
 import RealBestTeams as Brute
+import TeamGenSearch as Search
 from data import Const as C
 from model import TeamSet as TS
 
@@ -41,8 +42,14 @@ def brute_single_teams():
         i += 1
         print("\n")
 
+def search_team_sets():
+    best_team_sets = Search.calc_best_team_sets(keep_top_n)
+    for ts in best_team_sets:
+        print(ts.to_string())
+
 if __name__ == "__main__":
-    calc_player_values()
-    brute_force_team_sets()
-    brute_single_teams()
+    # calc_player_values()
+    # brute_force_team_sets()
+    # brute_single_teams()
+    search_team_sets()
 

@@ -1,5 +1,5 @@
 from data import Role as R
-from model import Players as P, Synergy as S
+from model import Player as P, Synergy as S
 
 """
 Constants for data.
