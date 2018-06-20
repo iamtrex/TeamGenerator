@@ -49,7 +49,7 @@ def search_team_sets():
 
 if __name__ == "__main__":
     # calc_player_values()
-    # brute_force_team_sets()
+    brute_force_team_sets()
     # brute_single_teams()
-    search_team_sets()
+    # search_team_sets()
 

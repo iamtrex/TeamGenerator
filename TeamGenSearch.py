@@ -9,7 +9,7 @@ import time
 AI Generative Search for Best Team(s). 
 """
 
-SEARCH_DURATION = 1000000  # Number of steps to do calculations for -> 1 million
+SEARCH_DURATION = 500000  # Number of steps to do calculations for -> 1 million
 
 POP_SIZE = 10
 PROB_RANDOM_SET = 0.10
@@ -164,11 +164,10 @@ def calc_best_team_sets(n):
 
         if iter % PERSISTENT_FEEDBACK_EVERY_N == 0:
             print("Iteration number " + str(iter) +
-                  "\nTime Elapsed " + str(round(time.time() - time_start), 3) + " sec"+
-                  "\nCurrent best team - ")
+                  "\nTime Elapsed " + str(round(time.time() - time_start), 3) + " sec")
 
             if last_best == all_time_best[0]:
-                print("Unchanged")
+                print("Best Team Unchanged")
             else:
                 print(all_time_best[0].to_string())
                 last_best = all_time_best[0]
