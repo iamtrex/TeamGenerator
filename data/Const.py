@@ -5,7 +5,6 @@ from model import Player as P, Synergy as S
 Constants for data.
 """
 
-
 #####################################################################################
 # Player Configuration
 #####################################################################################
@@ -57,7 +56,6 @@ corr_map = {
 
 AVG_RANK = R.LPl
 MAX_ROLE_PREF = 30
-
 
 OG = list(range(len(players)))  # The permutations.
 
