@@ -43,7 +43,7 @@ players = [Andrew, Rex, Fred, Justin, Josh, Jackie, Charles, Jason, Victor, Hail
 # Setup all the players
 corr_map = {
     "Andrew": {S.Synergy(Jackie, -0.1), S.Synergy(Justin, 0.5)},
-    "Rex": {S.Synergy(Jackie, -0.75), S.Synergy(Andrew, 0.1)},
+    "Rex": {S.Synergy(Jackie, -0.5), S.Synergy(Andrew, 0.1)},
     "Fred": {S.Synergy(Josh, 0.1), S.Synergy(Rex, 0.1)},
     "Justin": {S.Synergy(Tyson, -1.0)},
     "Josh": {S.Synergy(Rex, -0.1)},
@@ -52,7 +52,8 @@ corr_map = {
     "Jason": {S.Synergy(Jackie, -0.2), S.Synergy(Andrew, 0.1), S.Synergy(Rex, 0.1)},
     "Victor": {S.Synergy(Tyson, 0.5)},
     "Tyson": {},
-    "Hailin":{S.Synergy(Rex, 0.1), S.Synergy(Charles, 0.1)}}
+    "Hailin":{S.Synergy(Rex, 0.1), S.Synergy(Charles, 0.1)}
+}
 
 AVG_RANK = R.LPl
 MAX_ROLE_PREF = 30
