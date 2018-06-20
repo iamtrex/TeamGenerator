@@ -30,13 +30,14 @@ def calc_best_n_team_sets(n):
     score_total = 0
 
     # Create all permutations
-    all_combinations = itertools.permutations(og, 10)
+    all_combinations = itertools.permutations(C.OG, 10)
     for i in all_combinations:
         counter += 1
         if counter % 1000000 == 0:  # Print every million combinations
             print("Evaluated " + str(counter) + " combinations")
             if len(team_sets) > 0:
                 print("Current Average " + str(score_total / len(team_sets)))  # Average over time... Should only improve
+                print("Current Best " + team_sets[0].to_string())
 
         # Create a set with the permutation.
         team_set = TS.TeamSet(C.players[i[0]], C.players[i[1]], C.players[i[2]], C.players[i[3]], C.players[i[4]],
@@ -50,12 +51,20 @@ def calc_best_n_team_sets(n):
 
         else:
             team_sets.sort(key=get_score, reverse=True)
-            if get_score(team_sets[-1]) < score:
+            last_place = get_score(team_sets[-1])
+            if last_place < score:
                 # Pop Lowest score and replace with a new score...
-                s = team_sets.pop()
-                score_total -= get_score(s)
+                while last_place < score and len(team_sets) > n:
+                    s = team_sets.pop()
+                    score_total -= get_score(s)
+                    last_place = get_score(team_sets[-1])
+
                 team_sets.append(team_set)
                 score_total += score
+            elif last_place == score:
+                # Append to the end.
+                score_total += score
+                team_sets.append(team_set)
 
     # Print Team from Best to Worst
     team_sets.sort(key=get_score, reverse=True)
@@ -67,15 +76,17 @@ def calc_best_n_teams(n):
     time_start = time.time()
 
     counter = 1
-    all_combinations = itertools.permutations(og, 5)
+    all_combinations = itertools.permutations(C.OG, 5)
     score_total = 0
     teams = []
     for i in all_combinations:
         counter += 1
-        if counter % 100000 == 0:  # Print every 100000 combinations
+        if counter % 10000 == 0:  # Print every 1000 combinations
             print("Evaluated " + str(counter) + " combinations")
             if len(teams) > 0:
                 print("Current Average " + str(score_total / len(teams)))  # Average over time... Should only improve
+                print("Current Best\n" + teams[0].to_string())
+
 
         # Create a set with the permutation.
         team = T.Team(C.players[i[0]], C.players[i[1]], C.players[i[2]], C.players[i[3]], C.players[i[4]])
@@ -88,12 +99,17 @@ def calc_best_n_teams(n):
 
         else:
             teams.sort(key=get_score, reverse=True)
-            if get_score(teams[-1]) < score:
+            last_place = get_score(teams[-1])
+            if last_place < score:
                 # Pop Lowest score and replace with a new score...
                 s = teams.pop()
-                score_total -= get_score(s)
+                score_total -= last_place
                 teams.append(team)
                 score_total += score
+            elif last_place == score:
+                # Append to the end.
+                score_total += score
+                teams.append(team)
 
     teams.sort(key=get_score, reverse=True)
     print("Time Taken " + str(time.time() - time_start) + "s")
@@ -110,47 +126,4 @@ def calc_player_value(players):
     players.sort(key=get_value)
     for p in players:
         print(p.name + "\t" + str(round((p.value - avg) / avg, 3)))
-
-#####################################################################################
-# Player Configuration
-#####################################################################################
-# Setup Initial
-
-
-#####################################################################################
-# Config Constants
-#####################################################################################
-keep_top_n = 5  # Keeps top n teams...
-og = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]  # The permutations.
-
-
-#####################################################################################
-# Script Start
-#####################################################################################
-print("Calculating each player's individual value")
-calc_player_value(C.players)
-
-print("Calculating most balanced teams")
-max_sets = calc_best_n_team_sets(keep_top_n)
-i = 1
-for s in max_sets:
-    print_team_set(s, i)
-    i += 1
-
-print("My personal teams")
-# My Custom Team(s)
-my_set = TS.TeamSet(C.Charles, C.Rex, C.Victor, C.Josh, C.Tyson, C.Jackie, C.Jason, C.Fred, C.Justin, C.Andrew)
-print_team_set(my_set, "MyTeam 1")
-my_set_2 = TS.TeamSet(C.Charles, C.Jackie, C.Fred, C.Justin, C.Andrew, C.Victor, C.Jason, C.Rex, C.Josh, C.Tyson)
-print_team_set(my_set_2, "MyTeam 2")
-
-
-i = 1
-print("Calculating the best single team(s)")
-teams = calc_best_n_teams(keep_top_n)
-for s in teams:
-    print("Team Number " + str(i) + "\tScore: " + str(get_score(s)))
-    print(s.to_string())
-    i += 1
-    print("\n")
 
