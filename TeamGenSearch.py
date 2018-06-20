@@ -2,7 +2,6 @@ from data import Const as C
 from model import TeamSet as TS
 
 import random
-import itertools
 import time
 
 """
@@ -15,7 +14,7 @@ POP_SIZE = 10
 PROB_RANDOM_SET = 0.10
 PROB_RANDOM_MUTATION = 0.40
 PROB_RANDOM_SWAP = 0.80
-SAVE_EVERY_N = 100  # Save top teams every N...
+SAVE_EVERY_N = 1  # Save top teams every N...
 PERSISTENT_FEEDBACK_EVERY_N = 10000  # Print current record holder every N
 
 
@@ -164,7 +163,7 @@ def calc_best_team_sets(n):
 
         if iter % PERSISTENT_FEEDBACK_EVERY_N == 0:
             print("Iteration number " + str(iter) +
-                  "\nTime Elapsed " + str(round(time.time() - time_start), 3) + " sec")
+                  "\nTime Elapsed " + str(round(time.time() - time_start, 3)) + " sec")
 
             if last_best == all_time_best[0]:
                 print("Best Team Unchanged")
