@@ -7,18 +7,8 @@ import time
 '''Class Def Player - Represents a Player with name, preferred roles, and rating at each role.'''
 
 
-def get_value(player):
-    return player.value
-
-
 def get_score(obj):
     return obj.score
-
-
-def print_team_set(ts, num):
-    print("Team Number " + str(num) + "\tScore: " + str(get_score(ts)))
-    print(ts.to_string())
-    print("\n")
 
 
 def calc_best_n_team_sets(n):
@@ -114,16 +104,4 @@ def calc_best_n_teams(n):
     teams.sort(key=get_score, reverse=True)
     print("Time Taken " + str(time.time() - time_start) + "s")
     return teams
-
-
-def calc_player_value(players):
-    print("Player Values\n")
-    total_value = 0
-    for p in players:
-        total_value += p.value
-
-    avg = round(total_value / len(players), 5)
-    players.sort(key=get_value)
-    for p in players:
-        print(p.name + "\t" + str(round((p.value - avg) / avg, 3)))
 
