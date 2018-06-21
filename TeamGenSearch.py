@@ -8,7 +8,11 @@ import time
 AI Generative Search for Best Team(s). 
 """
 
-SEARCH_DURATION = 500000  # Number of steps to do calculations for -> 1 million
+###########################################################################
+# Search Params.
+###########################################################################
+
+SEARCH_DURATION = 100000  # Number of steps to do calculations for -> 1 million
 
 POP_SIZE = 10
 PROB_RANDOM_SET = 0.10
