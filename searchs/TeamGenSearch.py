@@ -182,6 +182,6 @@ def calc_best_team_sets(n):
     sorted_sets = (all_time_best + curr_best_team_sets)
     sorted_sets.sort(key=get_score, reverse=True)
 
-    print("Time Taken -" + str(time.time()-time_start))
+    print("Time Taken " + str(time.time()-time_start))
 
     return sorted_sets[:n]  # Return n best teams.

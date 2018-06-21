@@ -32,7 +32,8 @@ def brute_single_teams():
 def print_list_ts(team_sets):
     counter = 1
     for ts in team_sets:
-        s = "Team " + str(counter) + str(ts.score) + "\n" + ts.to_string() + ts.detailed_score()
+        s = "Team " + str(counter) + " Score " + str(ts.score) + "\n" + \
+            ts.to_string() + "\n" + ts.detailed_score()
         counter += 1
         print(s)
 
