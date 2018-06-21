@@ -58,4 +58,5 @@ class Team:
         return self.players[0].name + " " + self.players[1].name + " " + self.players[2].name + " " + \
                self.players[3].name + " " + self.players[4].name + "\nScore " + str(self.score)
 
-
+    def detailed_score(self):
+        return ""

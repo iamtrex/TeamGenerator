@@ -1,5 +1,4 @@
-import RealBestTeams as Brute
-import TeamGenSearch as Search
+from searchs import RealBestTeams as Brute, TeamGenSearch as Search, PlayerValue as PlayerVal
 from data import Const as C
 from model import TeamSet as TS
 
@@ -10,46 +9,52 @@ keep_top_n = 5  # Keeps top n teams...
 
 
 #####################################################################################
-# Script Start
+# Calculation Types...
 #####################################################################################
 
 def calc_player_values():
     print("Calculating each player's individual value")
-    Brute.calc_player_value(C.players)
+    PlayerVal.calc_and_print_player_value(C.players)
+
 
 def brute_force_team_sets():
-    print("Calculating most balanced teams")
+    print("Calculating most balanced teams via Brute Force")
     max_sets = Brute.calc_best_n_team_sets(keep_top_n)
-    i = 1
-    for s in max_sets:
-        Brute.print_team_set(s, i)
-        i += 1
+    print_list_ts(max_sets)
 
-    print("My personal teams")
-    # My Custom Team(s)
-    my_set = TS.TeamSet(C.Charles, C.Rex, C.Victor, C.Josh, C.Tyson, C.Jackie, C.Jason, C.Fred, C.Justin, C.Andrew)
-    Brute.print_team_set(my_set, "MyTeam 1")
-    my_set_2 = TS.TeamSet(C.Charles, C.Jackie, C.Fred, C.Justin, C.Andrew, C.Victor, C.Jason, C.Rex, C.Josh, C.Tyson)
-    Brute.print_team_set(my_set_2, "MyTeam 2")
 
 def brute_single_teams():
-    i = 1
-    print("Calculating the best single team(s)")
+    print("Calculating the best single teams via Brute Force")
     teams = Brute.calc_best_n_teams(keep_top_n)
-    for s in teams:
-        print("Team Number " + str(i) + "\tScore: " + str(Brute.get_score(s)))
-        print(s.to_string())
-        i += 1
-        print("\n")
+    print_list_ts(teams)
+
+
+def print_list_ts(team_sets):
+    counter = 1
+    for ts in team_sets:
+        s = "Team " + str(counter) + str(ts.score) + "\n" + ts.to_string() + ts.detailed_score()
+        counter += 1
+        print(s)
+
 
 def search_team_sets():
     best_team_sets = Search.calc_best_team_sets(keep_top_n)
-    for ts in best_team_sets:
-        print(ts.to_string())
+    print_list_ts(best_team_sets)
+
+#####################################################################################
+# Script Start
+#####################################################################################
 
 if __name__ == "__main__":
-    # calc_player_values()
-     brute_force_team_sets()
+    calc_player_values()
+    # brute_force_team_sets()
     # brute_single_teams()
-    # search_team_sets()
+    search_team_sets()
+
+    print("My custom teams")
+    # My Custom Team(s)
+    my_set = TS.TeamSet(C.Charles, C.Rex, C.Victor, C.Josh, C.Tyson, C.Jackie, C.Jason, C.Fred, C.Justin, C.Andrew)
+    my_set_2 = TS.TeamSet(C.Charles, C.Jackie, C.Fred, C.Justin, C.Andrew, C.Victor, C.Jason, C.Rex, C.Josh, C.Tyson)
+    print_list_ts([my_set, my_set_2])
+
 

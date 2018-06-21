@@ -166,7 +166,7 @@ def calc_best_team_sets(n):
             all_time_best = sorted_sets[:n]  # Keep top N.
 
         if iter % PERSISTENT_FEEDBACK_EVERY_N == 0:
-            print("Iteration number " + str(iter) +
+            print("Iteration number " + str(iter) + " - Score " + str(all_time_best[0].score) +
                   "\nTime Elapsed " + str(round(time.time() - time_start, 3)) + " sec")
 
             if last_best == all_time_best[0]:
@@ -174,6 +174,8 @@ def calc_best_team_sets(n):
             else:
                 print(all_time_best[0].to_string())
                 last_best = all_time_best[0]
+
+            print()
 
         iter += 1
 
