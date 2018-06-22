@@ -21,6 +21,15 @@ class TeamSet:
         self.synergy = 0
         self.calc_score()
 
+    def __hash__(self):
+        return hash(self.t1) + hash(self.t2)
+
+    def __eq__(self, other):
+        return (self.t1 == other.t1 and self.t2 == other.t2) or (self.t1 == other.t2 and self.t2 == other.t1)
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
     # Calculate a team score ranging from 0 to 1.
     def calc_score(self):
 
@@ -55,7 +64,7 @@ class TeamSet:
         "Role Pref = " + str(self.role_pref) + "\n" + \
         "Level Diff = " + str(self.level_diff) + "\t" + \
             str(self.t1.rank_sum) + " vs " + str(self.t2.rank_sum) + "\n" + \
-        "Synergy Diff = " + str(self.synergy) + "\n" + \
+        "Synergy Score = " + str(self.synergy) + "\n" + \
         "Rating = " + str(self.rating) + "\n" + \
         "Value Diff = " + str(self.value_diff) + "\t" + str(self.t1.value) + " vs " + str(self.t2.value) + "\n" + \
             "\t" + str(self.t1.comms_value) + " vs " + str(self.t2.comms_value) + "\n" + \

@@ -56,6 +56,7 @@ if __name__ == "__main__":
     # My Custom Team(s)
     my_set = TS.TeamSet(C.Charles, C.Rex, C.Victor, C.Josh, C.Tyson, C.Jackie, C.Jason, C.Fred, C.Justin, C.Andrew)
     my_set_2 = TS.TeamSet(C.Charles, C.Jackie, C.Fred, C.Justin, C.Andrew, C.Victor, C.Jason, C.Rex, C.Josh, C.Tyson)
-    print_list_ts([my_set, my_set_2])
+    my_set_3 = TS.TeamSet(C.Charles, C.Jason, C.Rex, C.Justin, C.Andrew, C.Hailin, C.Jackie, C.Victor, C.Josh, C.Fred)
+    print_list_ts([my_set, my_set_2, my_set_3])
 
 

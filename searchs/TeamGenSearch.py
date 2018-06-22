@@ -12,7 +12,7 @@ AI Generative Search for Best Team(s).
 # Search Params.
 ###########################################################################
 
-SEARCH_DURATION = 100000  # Number of steps to do calculations for -> 1 million
+SEARCH_DURATION = 50000  # Number of steps to do calculations for
 
 POP_SIZE = 10
 PROB_RANDOM_SET = 0.10
@@ -97,7 +97,6 @@ def mate_sets(ts1):
 
     ts_new_players = t1_new + t2_new
 
-    # Fix Repeats
     # Possible Mutation
     i = random.randint(0, 100)
     if i <= PROB_RANDOM_MUTATION * 100:
@@ -162,6 +161,8 @@ def calc_best_team_sets(n):
 
         if iter % SAVE_EVERY_N == 0:  # Save every nth iteration...
             sorted_sets = (all_time_best + curr_best_team_sets)
+            sorted_sets = set(sorted_sets)
+            sorted_sets = list(sorted_sets)
             sorted_sets.sort(key=get_score, reverse=True)
             all_time_best = sorted_sets[:n]  # Keep top N.
 
@@ -169,7 +170,7 @@ def calc_best_team_sets(n):
             print("Iteration number " + str(iter) + " - Score " + str(all_time_best[0].score) +
                   "\nTime Elapsed " + str(round(time.time() - time_start, 3)) + " sec")
 
-            if last_best == all_time_best[0]:
+            if (last_best is not None) and last_best == all_time_best[0]:
                 print("Best Team Unchanged")
             else:
                 print(all_time_best[0].to_string())

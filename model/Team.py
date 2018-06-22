@@ -54,6 +54,19 @@ class Team:
 
         self.score = round(score, 5)  # 5 Decimal places
 
+    def __hash__(self):
+        return hash(self.players[0]) * 5 + hash(self.players[1]) * 4 + hash(self.players[2]) * 3 + hash(self.players[3]) * 2 + hash(self.players[4])
+
+    def __eq__(self, other):
+        return self.players[0] == other.players[0] and \
+            self.players[1] == other.players[1] and \
+            self.players[2] == other.players[2] and \
+            self.players[3] == other.players[3] and \
+            self.players[4] == other.players[4]
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
     def to_string(self):
         return self.players[0].name + " " + self.players[1].name + " " + self.players[2].name + " " + \
                self.players[3].name + " " + self.players[4].name + "\nScore " + str(self.score)
