@@ -160,8 +160,8 @@ def calc_best_team_sets(n):
         curr_best_team_sets = next_generation
 
         if iter % SAVE_EVERY_N == 0:  # Save every nth iteration...
-            sorted_sets = (all_time_best + curr_best_team_sets)
-            sorted_sets = set(sorted_sets)
+            sorted_sets = (all_time_best + curr_best_team_sets) # Combine current with history's best.
+            sorted_sets = set(sorted_sets)  # Remove duplicates.
             sorted_sets = list(sorted_sets)
             sorted_sets.sort(key=get_score, reverse=True)
             all_time_best = sorted_sets[:n]  # Keep top N.

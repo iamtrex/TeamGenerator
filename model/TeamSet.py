@@ -67,10 +67,10 @@ class TeamSet:
         "Synergy Score = " + str(self.synergy) + "\n" + \
         "Rating = " + str(self.rating) + "\n" + \
         "Value Diff = " + str(self.value_diff) + "\t" + str(self.t1.value) + " vs " + str(self.t2.value) + "\n" + \
-            "\t" + str(self.t1.comms_value) + " vs " + str(self.t2.comms_value) + "\n" + \
-            "\t" + str(self.t1.flex_value) + " vs " + str(self.t2.flex_value) + "\n" + \
-            "\t" + str(self.t1.untilt_value) + " vs " + str(self.t2.untilt_value) + "\n" + \
-            "\t" + str(self.t1.consist_value) + " vs " + str(self.t2.consist_value)
+            "\tComms " + str(self.t1.comms_value) + " vs " + str(self.t2.comms_value) + "\n" + \
+            "\tFlex " + str(self.t1.flex_value) + " vs " + str(self.t2.flex_value) + "\n" + \
+            "\tUntilt" + str(self.t1.untilt_value) + " vs " + str(self.t2.untilt_value) + "\n" + \
+            "\tConsistency" + str(self.t1.consist_value) + " vs " + str(self.t2.consist_value)
 
     def to_string(self):
         return self.t1.players[0].name + "\t\t" + self.t2.players[0].name + "\n" + \
