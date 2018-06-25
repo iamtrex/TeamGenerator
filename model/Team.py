@@ -19,7 +19,6 @@ class Team:
         self.rank_sum = level
         self.level = level / 5 / R.LPl
 
-
         comms_value = 0
         flex_value = 0
         untilt_value = 0
@@ -42,6 +41,7 @@ class Team:
         self.untilt_value = untilt_value
         self.consist_value = consist_value
         self.value = value
+        self.other_values = [comms_value, flex_value, untilt_value, consist_value]
 
         self.role_pref = role_pref
         self.synergy_sum = corr_sum

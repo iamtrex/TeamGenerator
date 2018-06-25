@@ -36,9 +36,9 @@ Charles = P.Player("Charles", [4, 1, 2, 2, 3], [R.HGo, R.HSi, R.LGo, R.MGo, R.MG
 Jason = P.Player("Jason", [1, 4, 2, 2, 3], [R.HSi, R.HGo, R.LGo, R.HSi, R.LGo], [2, 4, 3, 4])
 Victor = P.Player("Victor", [3, 1, 4, 3, 2], [R.LGo, R.HSi, R.MGo, R.MGo, R.HSi], [3, 3, 4, 3])
 Tyson = P.Player("Tyson", [2, 1, 3, 1, 4], [R.LGo, R.HSi, R.LGo, R.HSi, R.MGo], [2, 4, 2, 3])
-Hailin = P.Player("Hailin", [4, 1, 2, 3, 2], [R.LDi, R.HSi, R.LDi, R.LDi, R.HPl], [2, 3, 3, 4])
+Hailin = P.Player("Hailin", [4, 1, 2, 3, 2], [R.LDi, R.HSi, R.HPl, R.LDi, R.HPl], [2, 3, 3, 4])
 
-players = [Andrew, Rex, Fred, Justin, Josh, Jackie, Charles, Jason, Victor, Hailin]
+players = [Andrew, Rex, Fred, Justin, Josh, Jackie, Charles, Jason, Victor, Hailin, Tyson]
 
 # Setup all the players
 corr_map = {
@@ -55,12 +55,15 @@ corr_map = {
     "Hailin":{S.Synergy(Rex, 0.1), S.Synergy(Charles, 0.1), S.Synergy(Victor, 0.1)}
 }
 
+
 AVG_RANK = R.LPl
 MAX_ROLE_PREF = 4 * 10 # Max score of 4/player with 10 players.
 
 OG = list(range(len(players)))  # The permutations.
 
-# Weights: overall rank, pref roles, level diff, correlatabilities bonus, player stats
-weight_factors = [0.45, 0.05, 0.30, 0.1, 0.1]
-
+# Weights: overall rank, pref roles, level diff, correlatabilities bonus, player stats, player other stats indiv differences.
+weight_factors = [0.45, 0.05, 0.20, 0.1, 0.1, 0.1]
 value_weight = [0.70, 0.30]  # Weight of player's rank vs other stats for their overall value.
+
+PLAYER_OTHER_STATS_DIFF_WEIGHTS = [0.25, 0.25, 0.25, 0.25]
+VAL_COEFF_COUNT = len(PLAYER_OTHER_STATS_DIFF_WEIGHTS)
