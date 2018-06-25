@@ -36,11 +36,11 @@ class Team:
                 if cor.player in self.players:
                     corr_sum += cor.score
 
-        self.comms_value = comms_value
-        self.flex_value = flex_value
-        self.untilt_value = untilt_value
-        self.consist_value = consist_value
-        self.value = value
+        self.comms_value = round(comms_value, 2)
+        self.flex_value = round(flex_value, 2)
+        self.untilt_value = round(untilt_value, 2)
+        self.consist_value = round(consist_value, 2)
+        self.value = round(value, 4)
         self.other_values = [comms_value, flex_value, untilt_value, consist_value]
 
         self.role_pref = role_pref

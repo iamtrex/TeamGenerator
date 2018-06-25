@@ -1,6 +1,7 @@
 from searchs import RealBestTeams as Brute, TeamGenSearch as Search, PlayerValue as PlayerVal
 from data import Const as C
 from model import TeamSet as TS
+from evaluation import WinPercentCalculator as WPC
 
 #####################################################################################
 # Config Constants
@@ -47,16 +48,26 @@ def search_team_sets():
 #####################################################################################
 
 if __name__ == "__main__":
-    calc_player_values()
+    # calc_player_values()
     # brute_force_team_sets()
     # brute_single_teams()
-    search_team_sets()
+    # search_team_sets()
 
     print("My custom teams")
     # My Custom Team(s)
     my_set = TS.TeamSet(C.Charles, C.Rex, C.Victor, C.Josh, C.Tyson, C.Jackie, C.Jason, C.Fred, C.Justin, C.Andrew)
     my_set_2 = TS.TeamSet(C.Charles, C.Jackie, C.Fred, C.Justin, C.Andrew, C.Victor, C.Jason, C.Rex, C.Josh, C.Tyson)
     my_set_3 = TS.TeamSet(C.Charles, C.Jason, C.Rex, C.Justin, C.Andrew, C.Hailin, C.Jackie, C.Victor, C.Josh, C.Fred)
-    print_list_ts([my_set, my_set_2, my_set_3])
+    uneven_set = TS.TeamSet(C.Hailin, C.Rex, C.Fred, C.Josh, C.Andrew, C.Tyson, C.Victor, C.Jason, C.Charles, C.Jackie)
+    my_sets = [my_set, my_set_2, my_set_3, uneven_set]
+
+    # print_list_ts(my_sets)
+
+    counter = 1
+    for i in my_sets:
+        print("WinRate my set " + str(counter) + " " + str(WPC.team1_win_rate(i)))
+        counter += 1
+
+
 
 
