@@ -35,7 +35,7 @@ class TeamSet:
     def calc_score(self):
         rating = (self.t1.rank_sum + self.t2.rank_sum) / 10 / C.AVG_RANK
 
-        level_diff = math.exp( -abs(self.t1.rank_sum - self.t2.rank_sum) / 5)
+        level_diff = 1 - abs(self.t1.rank_sum - self.t2.rank_sum) / 5
 
         pref_role_sum = (self.t1.role_pref + self.t2.role_pref) / C.MAX_ROLE_PREF
 
@@ -75,6 +75,7 @@ class TeamSet:
         "Synergy Score = " + str(self.synergy) + "\n" + \
         "Rating = " + str(self.rating) + "\n" + \
         "Value Diff = " + str(self.value_diff) + "\t" + str(self.t1.value) + " vs " + str(self.t2.value) + "\n" + \
+        "Other Value Diff = " + str(self.other_value_diff) + "\n" +\
             "\tComms " + str(self.t1.comms_value) + " vs " + str(self.t2.comms_value) + "\n" + \
             "\tFlex " + str(self.t1.flex_value) + " vs " + str(self.t2.flex_value) + "\n" + \
             "\tUntilt " + str(self.t1.untilt_value) + " vs " + str(self.t2.untilt_value) + "\n" + \

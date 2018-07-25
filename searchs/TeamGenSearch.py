@@ -66,18 +66,6 @@ def swap_one_spot(ts_new_players):
     ts_new_players[pos[0]], ts_new_players[pos[1]] = ts_new_players[pos[1]], ts_new_players[pos[0]]
 
 
-# def fix_duplicates(ts):
-#     ts_fixed = []
-#     for i in ts:
-#         if i not in ts_fixed:
-#             ts_fixed.append(i)
-#         else:
-#             while i in ts_fixed:
-#                 i = C.players[random.sample(C.OG, 10)[0]]
-#             ts_fixed.append(i)  # Add a new player.
-#     return ts_fixed
-
-
 def mate_sets(ts1):
     i = random.randint(0, 100)
 

@@ -26,24 +26,29 @@ Tyson = Player("Tyson", [2, 1, 4, 3, 5], [R.LSi, R.LSi, R.HSi, R.HSi, R.MGo])
 
 # Setup New - Two Preferred Roles 1-3, with my rank adjustments... Rank from High Silver to M Plat
 # Teamwork stuff - Comms, flexibility, untiltability, consistency, each out of 5.
-Andrew = P.Player("Andrew", [1, 2, 3, 2, 4], [R.LGo, R.MGo, R.LPl, R.MGo, R.LPl], [3, 3, 4, 4])
-Rex = P.Player("Rex", [1, 4, 3, 3, 2], [R.LGo, R.HPl, R.HGo, R.LPl, R.HGo], [5, 3, 2, 4])
+Andrew = P.Player("Andrew", [1, 2, 3, 2, 4], [R.LGo, R.MGo, R.LPl, R.HGo, R.LPl], [3, 3, 4, 4])
+Rex = P.Player("Rex", [1, 4, 3, 3, 2], [R.LGo, R.HPl, R.HGo, R.MPl, R.LPl], [5, 3, 1, 4])  # Fuck me I'm tilted XD
 Fred = P.Player("Fred", [1, 1, 4, 2, 3], [R.HSi, R.HSi, R.HGo, R.LGo, R.MGo], [2, 5, 4, 3])
-Justin = P.Player("Justin", [1, 2, 2, 4, 3], [R.LGo, R.HGo, R.LGo, R.LPl, R.HGo], [3, 3, 2, 3])
-Josh = P.Player("Josh", [1, 2, 3, 4, 3], [R.MGo, R.MGo, R.HGo, R.HPl, R.LPl], [3, 4, 2, 3.5])
+Justin = P.Player("Justin", [1, 2, 2, 4, 3], [R.LGo, R.HGo, R.LGo, R.HGo, R.HGo], [3, 3, 2, 3])
+Josh = P.Player("Josh", [1, 2, 3, 4, 3], [R.MGo, R.MGo, R.HGo, R.LDi, R.LPl], [3, 4, 3, 4])
 Jackie = P.Player("Jackie", [3, 4, 3, 1, 2], [R.HGo, R.HGo, R.MGo, R.LGo, R.LGo], [2, 5, 2, 3])
 Charles = P.Player("Charles", [4, 1, 2, 2, 3], [R.HGo, R.HSi, R.LGo, R.MGo, R.MGo], [5, 4, 2, 3])
 Jason = P.Player("Jason", [1, 4, 2, 2, 3], [R.HSi, R.HGo, R.LGo, R.HSi, R.LGo], [2, 4, 3, 4])
 Victor = P.Player("Victor", [3, 1, 4, 3, 2], [R.LGo, R.HSi, R.MGo, R.MGo, R.HSi], [3, 3, 4, 3])
 Tyson = P.Player("Tyson", [2, 1, 3, 1, 4], [R.LGo, R.HSi, R.LGo, R.HSi, R.MGo], [2, 4, 2, 3])
-Hailin = P.Player("Hailin", [4, 1, 2, 3, 2], [R.LDi, R.HSi, R.HPl, R.LDi, R.HPl], [2, 3, 3, 4])
+Hailin = P.Player("Hailin", [4, 1, 2, 3, 2], [R.LDi, R.HSi, R.HPl, R.LDi, R.HPl], [3, 4, 4, 4])
+Vincent = P.Player("Vincent", [2, 1, 1, 1, 4], [R.HSi, R.HSi, R.HSi, R.HSi, R.MGo], [2, 3, 4, 4])
 
-players = [Andrew, Rex, Fred, Justin, Josh, Jackie, Charles, Jason, Victor, Hailin, Tyson]
+players = [Andrew, Rex, Fred, Justin, Josh, Charles, Jason, Victor, Vincent, Jackie, Hailin, Tyson]
+
+#Player adjustments:
+players.remove(Tyson)
+players.remove(Charles)
 
 # Setup all the players
 corr_map = {
-    "Andrew": {S.Synergy(Jackie, -0.1), S.Synergy(Justin, 0.5)},
-    "Rex": {S.Synergy(Jackie, -0.5), S.Synergy(Andrew, 0.1)},
+    "Andrew": {S.Synergy(Jackie, -0.1), S.Synergy(Justin, 0.2)},
+    "Rex": {S.Synergy(Jackie, -0.2), S.Synergy(Andrew, 0.1)},
     "Fred": {S.Synergy(Josh, 0.1), S.Synergy(Rex, 0.1)},
     "Justin": {S.Synergy(Tyson, -1.0)},
     "Josh": {S.Synergy(Rex, -0.1)},
@@ -52,7 +57,8 @@ corr_map = {
     "Jason": {S.Synergy(Jackie, -0.2), S.Synergy(Andrew, 0.1), S.Synergy(Rex, 0.1)},
     "Victor": {S.Synergy(Tyson, 0.5)},
     "Tyson": {},
-    "Hailin":{S.Synergy(Rex, 0.1), S.Synergy(Charles, 0.1), S.Synergy(Victor, 0.1)}
+    "Hailin": {S.Synergy(Rex, 0.1), S.Synergy(Charles, 0.1), S.Synergy(Victor, 0.1)},
+    "Vincent": {S.Synergy(Fred, 0.1)}
 }
 
 
@@ -61,8 +67,8 @@ MAX_ROLE_PREF = 4 * 10 # Max score of 4/player with 10 players.
 
 OG = list(range(len(players)))  # The permutations.
 
-# Weights: overall rank, pref roles, level diff, correlatabilities bonus, player stats, player other stats indiv differences.
-weight_factors = [0.45, 0.05, 0.20, 0.1, 0.1, 0.1]
+# Weights: overall rank, pref roles, level diff, correlatabilities bonus, player rank value, player other stats indiv differences.
+weight_factors = [0.59, 0.05, 0.30, 0.01, 0, 0.05]
 value_weight = [0.70, 0.30]  # Weight of player's rank vs other stats for their overall value.
 
 PLAYER_OTHER_STATS_DIFF_WEIGHTS = [0.25, 0.25, 0.25, 0.25]
